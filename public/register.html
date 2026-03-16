@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SeniorGuardian — Crie sua conta e comece a proteger seus pais contra fraudes financeiras hoje mesmo.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Criar Conta — SeniorGuardian</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="/src/styles/variables.css">
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="stylesheet" href="/src/styles/landing.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-container">
+    <!-- Brand -->
+    <a href="/" class="auth-brand">
+      <svg class="auth-brand__logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#60A5FA"/>
+            <stop offset="100%" style="stop-color:#3B82F6"/>
+          </linearGradient>
+        </defs>
+        <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="url(#logoGrad)" opacity="0.9"/>
+        <path d="M24 32 L30 38 L40 26" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="auth-brand__name">SeniorGuardian</span>
+    </a>
+
+    <!-- Register Card -->
+    <div class="glass auth-card">
+      <h1 class="auth-card__title">Crie sua conta</h1>
+      <p class="auth-card__subtitle">Comece a proteger sua família em menos de 5 minutos.</p>
+
+      <!-- Plan Card -->
+      <div class="glass plan-card">
+        <p class="plan-card__label">Plano Guardião</p>
+        <p class="plan-card__price">R$ 29,90 <span>/mês</span></p>
+        <div class="plan-card__features">
+          <span class="plan-card__feature">✓ Bloqueio de chamadas fraudulentas</span>
+          <span class="plan-card__feature">✓ Monitoramento de CPF 24h</span>
+          <span class="plan-card__feature">✓ Alertas em tempo real</span>
+          <span class="plan-card__feature">✓ Cancele quando quiser</span>
+        </div>
+      </div>
+
+      <form class="auth-form" id="registerForm">
+        <div class="auth-form__group">
+          <label class="auth-form__label" for="regName">Nome completo</label>
+          <input class="auth-form__input" type="text" id="regName" placeholder="Seu nome" required>
+        </div>
+
+        <div class="auth-form__group">
+          <label class="auth-form__label" for="regEmail">E-mail</label>
+          <input class="auth-form__input" type="email" id="regEmail" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="auth-form__row">
+          <div class="auth-form__group">
+            <label class="auth-form__label" for="regPassword">Senha</label>
+            <input class="auth-form__input" type="password" id="regPassword" placeholder="••••••••" required>
+          </div>
+          <div class="auth-form__group">
+            <label class="auth-form__label" for="regPhone">Celular</label>
+            <input class="auth-form__input" type="tel" id="regPhone" placeholder="(11) 99999-9999">
+          </div>
+        </div>
+
+        <button type="submit" class="auth-form__submit" id="btnRegisterSubmit">
+          Assinar — R$ 29,90/mês
+        </button>
+      </form>
+
+      <div class="auth-divider">ou</div>
+
+      <p class="auth-footer">
+        Já tem uma conta? <a href="/login.html">Fazer login</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════ SCRIPT ═══════════ -->
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+
+      if (name && email && password) {
+        // Mock registration — accept any data
+        const btn = document.getElementById('btnRegisterSubmit');
+        btn.textContent = 'Criando conta...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+          window.location.href = '/dashboard.html';
+        }, 1000);
+      }
+    });
+  </script>
+
+</body>
+</html>
