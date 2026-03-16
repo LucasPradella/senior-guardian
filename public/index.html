@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SeniorGuardian — Modo Guardião. Painel de Segurança Patrimonial para proteção de idosos contra fraudes financeiras.">
+  <meta name="description" content="SeniorGuardian — O Airbag Digital dos seus Pais. Proteja seus pais contra fraudes financeiras, golpes do Pix e falsas centrais telefônicas.">
   <meta name="theme-color" content="#0F172A">
-  <title>SeniorGuardian — Blindagem Prateada</title>
+  <title>SeniorGuardian — Proteção Digital para Seus Pais</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <!-- Design System CSS -->
   <link rel="stylesheet" href="/src/styles/variables.css">
   <link rel="stylesheet" href="/src/styles/global.css">
-  <link rel="stylesheet" href="/src/styles/layout.css">
-  <link rel="stylesheet" href="/src/styles/components.css">
+  <link rel="stylesheet" href="/src/styles/landing.css">
 </head>
-<body>
+<body class="landing-body">
 
-  <div class="app" id="app">
-
-    <!-- ═══════════ SIDEBAR ═══════════ -->
-    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegação principal">
-      <div class="sidebar__brand">
-        <svg class="sidebar__logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="lp-header" id="lpHeader">
+    <div class="lp-header__inner">
+      <a href="/" class="lp-header__brand">
+        <svg class="lp-header__logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" style="stop-color:#60A5FA"/>
@@ -31,113 +29,223 @@
           <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="url(#logoGrad)" opacity="0.9"/>
           <path d="M24 32 L30 38 L40 26" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div>
-          <span class="sidebar__title">SeniorGuardian</span>
-          <span class="sidebar__subtitle">Blindagem Prateada</span>
-        </div>
-      </div>
+        <span class="lp-header__name">SeniorGuardian</span>
+      </a>
 
-      <nav class="sidebar__nav">
-        <span class="sidebar__label">Menu Principal</span>
-
-        <a class="sidebar__link sidebar__link--active" data-route="dashboard" id="nav-dashboard">
+      <nav class="lp-header__nav">
+        <a href="/login.html" class="lp-header__login" id="btnLogin">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/>
-            <rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/>
-            <rect x="14" y="14" width="7" height="7" rx="1"/>
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
           </svg>
-          Dashboard
+          Entrar
         </a>
-
-        <a class="sidebar__link" data-route="alertas" id="nav-alertas">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-          Alertas
-          <span class="sidebar__link-badge">3</span>
-        </a>
-
-        <a class="sidebar__link" data-route="relatorios" id="nav-relatorios">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10"/>
-            <line x1="12" y1="20" x2="12" y2="4"/>
-            <line x1="6" y1="20" x2="6" y2="14"/>
-          </svg>
-          Relatórios
-        </a>
-
-        <span class="sidebar__label" style="margin-top: var(--space-4);">Gerenciamento</span>
-
-        <a class="sidebar__link" data-route="configuracoes" id="nav-configuracoes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-          </svg>
-          Configurações
-        </a>
-
-        <a class="sidebar__link" data-route="" id="nav-suporte">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
-          </svg>
-          Suporte
-        </a>
+        <a href="/register.html" class="lp-header__cta" id="btnRegisterHeader">Criar Conta</a>
       </nav>
+    </div>
+  </header>
 
-      <div class="sidebar__footer">
-        <div class="sidebar__device-status">
-          <div class="sidebar__device-dot"></div>
-          <div class="sidebar__device-info">
-            <span class="sidebar__device-name">Celular do Seu Roberto</span>
-            <span class="sidebar__device-label">Pareado · Online</span>
+
+  <!-- ═══════════ HERO SECTION ═══════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Proteção ativa 24h
+        </div>
+
+        <h1 class="hero__headline">
+          O <span>Airbag Digital</span><br>dos seus Pais.
+        </h1>
+
+        <p class="hero__subheadline">
+          Bloqueie ligações falsas, links maliciosos e monitore o CPF deles 24h por dia. 
+          Dê autonomia para eles e tenha <strong style="color: var(--color-silver-200);">paz de espírito</strong> para você.
+        </p>
+
+        <div class="hero__actions">
+          <a href="/register.html" class="hero__cta" id="btnHeroCta">
+            Proteger Minha Família — R$ 29,90/mês
+            <svg class="hero__cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <span class="hero__cta-sub">Cancele quando quiser · Sem taxa de adesão</span>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <img src="/hero-shield.png" alt="Smartphone protegido por um escudo digital SeniorGuardian" class="hero__image" width="480" height="480" loading="eager">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ PAIN POINTS ═══════════ -->
+  <section class="pain-section" id="painSection">
+    <div class="pain-section__inner">
+      <span class="section-eyebrow reveal">O Problema</span>
+      <h2 class="section-heading reveal">
+        Você diversifica seus investimentos, mas o maior risco ao seu patrimônio hoje é o <em>celular do seu pai</em>.
+      </h2>
+      <p class="section-desc reveal">
+        Golpistas evoluíram. A engenharia social moderna é sofisticada o suficiente para enganar qualquer pessoa — especialmente quem não nasceu digital.
+      </p>
+
+      <div class="pain-grid">
+        <!-- Card 1: Falsa Central -->
+        <div class="glass pain-card reveal reveal-delay-1">
+          <div class="pain-card__icon pain-card__icon--danger">📞</div>
+          <h3 class="pain-card__title">Falsa Central Telefônica</h3>
+          <p class="pain-card__desc">
+            Criminosos ligam se passando pelo banco, criam urgência e convencem idosos a transferir dinheiro ou fornecer senhas de acesso.
+          </p>
+        </div>
+
+        <!-- Card 2: Golpe do Pix -->
+        <div class="glass pain-card reveal reveal-delay-2">
+          <div class="pain-card__icon pain-card__icon--warning">💬</div>
+          <h3 class="pain-card__title">Golpe do Pix via WhatsApp</h3>
+          <p class="pain-card__desc">
+            Se passam por filhos ou netos pedindo Pix urgente. A vítima, por amor e preocupação, transfere sem verificar.
+          </p>
+        </div>
+
+        <!-- Card 3: Consignado Indevido -->
+        <div class="glass pain-card reveal reveal-delay-3">
+          <div class="pain-card__icon pain-card__icon--info">🏦</div>
+          <h3 class="pain-card__title">Consignado Indevido</h3>
+          <p class="pain-card__desc">
+            Empréstimos consignados são contratados em nome de aposentados sem consentimento, descontando direto no benefício do INSS.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ COMO FUNCIONA ═══════════ -->
+  <section class="how-section" id="howSection">
+    <div class="how-section__inner">
+      <span class="section-eyebrow reveal">A Solução</span>
+      <h2 class="section-heading reveal" style="margin: 0 auto var(--space-4); text-align: center;">
+        Proteção em 3 camadas, sem invadir a privacidade.
+      </h2>
+      <p class="section-desc reveal" style="margin: 0 auto var(--space-12); text-align: center;">
+        O SeniorGuardian opera como um escudo invisível: protege sem monitorar conversas pessoais.
+      </p>
+
+      <div class="how-grid">
+        <!-- Step 1 -->
+        <div class="glass how-card reveal reveal-delay-1">
+          <div class="how-card__step how-card__step--1">
+            🛡️
+            <span class="how-card__number">1</span>
           </div>
+          <h3 class="how-card__title">Bloqueio Invisível</h3>
+          <p class="how-card__desc">
+            Filtro a nível de rede/telco que bloqueia automaticamente chamadas de centrais fraudulentas e links maliciosos via SMS.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass how-card reveal reveal-delay-2">
+          <div class="how-card__step how-card__step--2">
+            📋
+            <span class="how-card__number">2</span>
+          </div>
+          <h3 class="how-card__title">Monitoramento de CPF</h3>
+          <p class="how-card__desc">
+            Vigia 24h qualquer movimentação no CPF dos seus pais: consultas indevidas, empréstimos novos e protestos inesperados.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass how-card reveal reveal-delay-3">
+          <div class="how-card__step how-card__step--3">
+            🔔
+            <span class="how-card__number">3</span>
+          </div>
+          <h3 class="how-card__title">Alertas no Painel do Filho</h3>
+          <p class="how-card__desc">
+            Receba notificações em tempo real no seu Dashboard. Bloqueios, tentativas de fraude e relatórios semanais de segurança.
+          </p>
         </div>
       </div>
-    </aside>
+    </div>
+  </section>
 
-    <!-- ═══════════ SIDEBAR OVERLAY (Mobile) ═══════════ -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- ═══════════ HEADER ═══════════ -->
-    <header class="header" role="banner">
-      <div class="header__left">
-        <button class="header__mobile-toggle" id="menuToggle" aria-label="Abrir menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
-        </button>
-        <div class="header__greeting">
-          <h2 id="headerTitle">Bom dia, Marcelo</h2>
-          <p id="headerSubtitle">Seu Roberto está protegido. Tudo sob controle.</p>
+  <!-- ═══════════ CTA FINAL ═══════════ -->
+  <section class="cta-banner reveal" id="ctaBanner">
+    <div class="cta-banner__inner">
+      <h2 class="cta-banner__heading">
+        Comece a proteger quem te protegeu a vida inteira.
+      </h2>
+      <p class="cta-banner__desc">
+        Configure em 5 minutos. Sem instalar nada no celular dos seus pais.
+      </p>
+      <a href="/register.html" class="hero__cta" id="btnCtaBottom">
+        Criar Conta — R$ 29,90/mês
+        <svg class="hero__cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="lp-footer">
+    <div class="lp-footer__inner">
+      <div class="lp-footer__privacy reveal">
+        <div class="lp-footer__privacy-icon">🔒</div>
+        <p class="lp-footer__privacy-text">
+          <strong>Não somos um app espião.</strong> O SeniorGuardian não lê conversas de WhatsApp, não acessa fotos e não grava chamadas. 
+          Atuamos exclusivamente na camada de rede e consulta de dados públicos, em total conformidade com a LGPD.
+        </p>
+      </div>
+
+      <div class="lp-footer__bottom">
+        <div class="lp-footer__links">
+          <a href="#" class="lp-footer__link">Termos de Uso</a>
+          <a href="#" class="lp-footer__link">Política de Privacidade</a>
+          <a href="#" class="lp-footer__link">Central de Ajuda</a>
+          <a href="#" class="lp-footer__link">Contato</a>
         </div>
+        <p class="lp-footer__copy">© 2026 SeniorGuardian. Todos os direitos reservados.</p>
       </div>
-      <div class="header__right">
-        <button class="header__notification-btn" id="notificationBtn" aria-label="Notificações" data-route="alertas">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-          <span class="header__badge">3</span>
-        </button>
-        <div class="header__avatar" id="userAvatar" title="Marcelo Pradella">MP</div>
-      </div>
-    </header>
+    </div>
+  </footer>
 
-    <!-- ═══════════ MAIN CONTENT ═══════════ -->
-    <main class="main" role="main">
-      <div class="main__content" id="mainContent">
-        <!-- Content rendered by app.js -->
-      </div>
-    </main>
 
-  </div>
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script>
+    /* ── Header scroll effect ── */
+    const header = document.getElementById('lpHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
 
-  <script src="/src/app.js"></script>
+    /* ── Scroll Reveal (IntersectionObserver) ── */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+
 </body>
 </html>

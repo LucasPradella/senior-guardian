@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SeniorGuardian — Modo Guardião. Painel de Segurança Patrimonial para proteção de idosos contra fraudes financeiras.">
+  <meta name="theme-color" content="#0F172A">
+  <title>SeniorGuardian — Blindagem Prateada</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="/src/styles/variables.css">
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="stylesheet" href="/src/styles/layout.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+</head>
+<body>
+
+  <div class="app" id="app">
+
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegação principal">
+      <div class="sidebar__brand">
+        <svg class="sidebar__logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#60A5FA"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="url(#logoGrad)" opacity="0.9"/>
+          <path d="M24 32 L30 38 L40 26" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <span class="sidebar__title">SeniorGuardian</span>
+          <span class="sidebar__subtitle">Blindagem Prateada</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <span class="sidebar__label">Menu Principal</span>
+
+        <a class="sidebar__link sidebar__link--active" data-route="dashboard" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          Dashboard
+        </a>
+
+        <a class="sidebar__link" data-route="alertas" id="nav-alertas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          Alertas
+          <span class="sidebar__link-badge">3</span>
+        </a>
+
+        <a class="sidebar__link" data-route="relatorios" id="nav-relatorios">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          Relatórios
+        </a>
+
+        <span class="sidebar__label" style="margin-top: var(--space-4);">Gerenciamento</span>
+
+        <a class="sidebar__link" data-route="configuracoes" id="nav-configuracoes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          Configurações
+        </a>
+
+        <a class="sidebar__link" data-route="" id="nav-suporte">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Suporte
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__device-status">
+          <div class="sidebar__device-dot"></div>
+          <div class="sidebar__device-info">
+            <span class="sidebar__device-name">Celular do Seu Roberto</span>
+            <span class="sidebar__device-label">Pareado · Online</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ═══════════ SIDEBAR OVERLAY (Mobile) ═══════════ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="header" role="banner">
+      <div class="header__left">
+        <button class="header__mobile-toggle" id="menuToggle" aria-label="Abrir menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="header__greeting">
+          <h2 id="headerTitle">Bom dia, Marcelo</h2>
+          <p id="headerSubtitle">Seu Roberto está protegido. Tudo sob controle.</p>
+        </div>
+      </div>
+      <div class="header__right">
+        <button class="header__notification-btn" id="notificationBtn" aria-label="Notificações" data-route="alertas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="header__badge">3</span>
+        </button>
+        <div class="header__avatar" id="userAvatar" title="Marcelo Pradella">MP</div>
+      </div>
+    </header>
+
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <main class="main" role="main">
+      <div class="main__content" id="mainContent">
+        <!-- Content rendered by app.js -->
+      </div>
+    </main>
+
+  </div>
+
+  <script src="/src/app.js"></script>
+</body>
+</html>
