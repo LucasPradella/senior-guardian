@@ -32,7 +32,15 @@
         <span class="lp-header__name">SeniorGuardian</span>
       </a>
 
-      <nav class="lp-header__nav">
+      <button class="lp-header__hamburger" id="lpBtnHamburger" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="lp-header__nav" id="lpNav">
         <a href="/login.html" class="lp-header__login" id="btnLogin">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -302,6 +310,15 @@
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ── Mobile Menu Toggle ── */
+    const hamburger = document.getElementById('lpBtnHamburger');
+    const nav = document.getElementById('lpNav');
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        nav.classList.toggle('is-open');
+      });
+    }
   </script>
 
 </body>
