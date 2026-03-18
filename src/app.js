@@ -704,4 +704,218 @@
   // ── Initial render ──
   renderView('dashboard');
 
+  // ============================================
+  //  MOBILE SIMULATOR — Installation Walkthrough
+  // ============================================
+
+  const simulatorBtn = document.getElementById('simulatorBtn');
+  let simulatorOverlay = null;
+  let simulatorStep = 0;
+
+  // ── Simulator Steps Data ──
+  const simulatorSteps = [
+    {
+      icon: 'shield',
+      iconSvg: '<svg viewBox="0 0 24 24"><path d="M12 2 L22 7 V12 C22 17.5 12 22 12 22 C12 22 2 17.5 2 12 V7 Z"/><path d="M9 12 L11 14 L15 10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      title: 'Bem-vindo ao SeniorGuardian.',
+      text: 'Este aplicativo funciona como um <strong>Airbag Digital</strong>. Nós bloqueamos ligações falsas e links perigosos automaticamente, para que você navegue com total liberdade e segurança.',
+      btnText: 'Começar',
+      btnType: 'primary'
+    },
+    {
+      icon: 'lock',
+      iconSvg: '<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>',
+      title: 'Como vamos te proteger?',
+      text: 'Para bloquear fraudes antes que elas cheguem a você, o seu celular (Android) precisa que você libere duas permissões. Fique tranquilo: <strong>não temos acesso às suas senhas</strong>, não lemos suas conversas privadas do WhatsApp e <strong>não alteramos nada no seu banco</strong>.',
+      btnText: 'Entendi, avançar',
+      btnType: 'primary'
+    },
+    {
+      icon: 'family',
+      iconSvg: '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      title: 'Conexão Familiar',
+      text: 'Você foi convidado(a) por <strong>[Marcelo — Seu Filho]</strong> para compartilhar os alertas de segurança. Ele será avisado caso uma ameaça tente atacar seu aparelho.',
+      btnText: 'Autorizar e Conectar',
+      btnType: 'primary',
+      hasCheckbox: true,
+      checkboxText: 'Declaro que autorizo meu filho(a) a receber alertas de segurança do meu dispositivo.'
+    },
+    {
+      icon: 'success',
+      iconSvg: '<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+      title: 'Dispositivo Blindado! 🛡️',
+      text: 'Tudo pronto. Seu celular agora está <strong>protegido contra golpes e fraudes</strong>. Pode fechar o aplicativo e usar seu celular normalmente.',
+      btnText: 'Fechar Simulador',
+      btnType: 'close'
+    }
+  ];
+
+  function getSimulatorTime() {
+    const now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+  }
+
+  function buildStepHTML(step, index) {
+    let checkboxHTML = '';
+    if (step.hasCheckbox) {
+      checkboxHTML = `
+        <label class="simulator__checkbox-wrap" for="simConsent">
+          <input type="checkbox" class="simulator__checkbox-input" id="simConsent">
+          <span class="simulator__checkbox-label">${step.checkboxText}</span>
+        </label>
+      `;
+    }
+
+    const isDisabled = step.hasCheckbox ? ' simulator__btn--disabled' : '';
+    const disabledAttr = step.hasCheckbox ? ' disabled' : '';
+    const btnClass = step.btnType === 'close' ? 'simulator__btn simulator__btn--close' : `simulator__btn simulator__btn--primary${isDisabled}`;
+    const activeClass = index === 0 ? ' simulator-step--active' : '';
+
+    return `
+      <div class="simulator-step${activeClass}" data-step="${index}">
+        <div class="simulator__icon simulator__icon--${step.icon}">
+          ${step.iconSvg}
+        </div>
+        <h2 class="simulator__title">${step.title}</h2>
+        <p class="simulator__text">${step.text}</p>
+        ${checkboxHTML}
+        <button class="${btnClass}" id="simBtn${index}"${disabledAttr}>${step.btnText}</button>
+      </div>
+    `;
+  }
+
+  function buildProgressDots() {
+    return simulatorSteps.map((_, i) =>
+      `<div class="simulator__dot${i === 0 ? ' simulator__dot--active' : ''}" data-dot="${i}"></div>`
+    ).join('');
+  }
+
+  function openSimulator() {
+    simulatorStep = 0;
+
+    const stepsHTML = simulatorSteps.map((s, i) => buildStepHTML(s, i)).join('');
+
+    const overlayEl = document.createElement('div');
+    overlayEl.className = 'simulator-overlay';
+    overlayEl.id = 'simulatorOverlay';
+    overlayEl.innerHTML = `
+      <div class="simulator-phone" id="simulatorPhone">
+        <button class="simulator-phone__close" id="simCloseBtn" aria-label="Fechar simulador">&times;</button>
+
+        <div class="simulator-phone__notch">
+          <span class="simulator-phone__notch-time">${getSimulatorTime()}</span>
+          <div class="simulator-phone__notch-icons">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2" ry="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+          </div>
+        </div>
+
+        <div class="simulator-phone__screen">
+          ${stepsHTML}
+        </div>
+
+        <div class="simulator__progress" id="simProgress">
+          ${buildProgressDots()}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlayEl);
+    simulatorOverlay = overlayEl;
+
+    // Close on overlay click (outside phone)
+    overlayEl.addEventListener('click', (e) => {
+      if (e.target === overlayEl) closeSimulator();
+    });
+
+    // Close button
+    document.getElementById('simCloseBtn').addEventListener('click', closeSimulator);
+
+    // Step buttons
+    simulatorSteps.forEach((step, i) => {
+      const btn = document.getElementById(`simBtn${i}`);
+      if (!btn) return;
+
+      if (i < simulatorSteps.length - 1) {
+        btn.addEventListener('click', () => goToStep(i + 1));
+      } else {
+        // Last step = close
+        btn.addEventListener('click', closeSimulator);
+      }
+    });
+
+    // Checkbox on step 3
+    setTimeout(() => {
+      const checkbox = document.getElementById('simConsent');
+      const authBtn = document.getElementById('simBtn2');
+      if (checkbox && authBtn) {
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            authBtn.disabled = false;
+            authBtn.classList.remove('simulator__btn--disabled');
+          } else {
+            authBtn.disabled = true;
+            authBtn.classList.add('simulator__btn--disabled');
+          }
+        });
+      }
+    }, 100);
+
+    // Escape key
+    document.addEventListener('keydown', handleSimEscape);
+  }
+
+  function closeSimulator() {
+    if (!simulatorOverlay) return;
+
+    simulatorOverlay.classList.add('simulator-overlay--closing');
+    setTimeout(() => {
+      if (simulatorOverlay && simulatorOverlay.parentNode) {
+        simulatorOverlay.parentNode.removeChild(simulatorOverlay);
+      }
+      simulatorOverlay = null;
+      document.removeEventListener('keydown', handleSimEscape);
+    }, 300);
+  }
+
+  function goToStep(newStep) {
+    if (!simulatorOverlay) return;
+
+    const allSteps = simulatorOverlay.querySelectorAll('.simulator-step');
+    const allDots = simulatorOverlay.querySelectorAll('.simulator__dot');
+
+    // Exit current step
+    allSteps[simulatorStep].classList.remove('simulator-step--active');
+    allSteps[simulatorStep].classList.add('simulator-step--exiting');
+
+    // Enter new step
+    setTimeout(() => {
+      allSteps[simulatorStep].classList.remove('simulator-step--exiting');
+      allSteps[newStep].classList.add('simulator-step--active');
+      simulatorStep = newStep;
+    }, 150);
+
+    // Update dots
+    allDots.forEach((dot, i) => {
+      dot.classList.remove('simulator__dot--active', 'simulator__dot--completed');
+      if (i === newStep) {
+        dot.classList.add('simulator__dot--active');
+      } else if (i < newStep) {
+        dot.classList.add('simulator__dot--completed');
+      }
+    });
+  }
+
+  function handleSimEscape(e) {
+    if (e.key === 'Escape') closeSimulator();
+  }
+
+  // Wire up the simulator button
+  if (simulatorBtn) {
+    simulatorBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openSimulator();
+    });
+  }
+
 })();
