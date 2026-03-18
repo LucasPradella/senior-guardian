@@ -786,3 +786,419 @@
   font-weight: var(--font-weight-semibold);
   margin-top: var(--space-1);
 }
+
+/* ============================================
+   MOBILE SIMULATOR — Walkthrough Modal
+   ============================================ */
+
+/* ── Sidebar Simulator Button ── */
+.sidebar__link--simulator {
+  border: 1px solid #10B981 !important;
+  background: rgba(16, 185, 129, 0.08);
+  margin-top: var(--space-2);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar__link--simulator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.sidebar__link--simulator:hover {
+  background: rgba(16, 185, 129, 0.18) !important;
+  border-color: #34D399 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  transform: translateX(2px);
+}
+
+.sidebar__link--simulator:hover::before {
+  opacity: 1;
+}
+
+/* ── Overlay ── */
+.simulator-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  animation: simFadeIn 0.3s ease forwards;
+}
+
+.simulator-overlay--closing {
+  animation: simFadeOut 0.3s ease forwards;
+}
+
+/* ── Phone Container ── */
+.simulator-phone {
+  width: 375px;
+  height: 680px;
+  background: #0F172A;
+  border-radius: 44px;
+  border: 3px solid #334155;
+  box-shadow:
+    0 0 0 2px #1E293B,
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.08),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: phoneSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── Phone Notch / Status Bar ── */
+.simulator-phone__notch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 28px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94A3B8;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.simulator-phone__notch-time {
+  font-variant-numeric: tabular-nums;
+}
+
+.simulator-phone__notch-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.simulator-phone__notch-icons svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Close Button ── */
+.simulator-phone__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.15);
+  border: none;
+  color: #94A3B8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.simulator-phone__close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  transform: scale(1.1);
+}
+
+/* ── Screen Area ── */
+.simulator-phone__screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Steps ── */
+.simulator-step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.simulator-step--active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.simulator-step--exiting {
+  opacity: 0;
+  transform: translateX(-60px);
+  pointer-events: none;
+}
+
+/* ── Step Icon ── */
+.simulator__icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.simulator__icon--shield {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.simulator__icon--shield svg {
+  width: 48px;
+  height: 48px;
+  stroke: #10B981;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.simulator__icon--lock {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.simulator__icon--lock svg {
+  width: 44px;
+  height: 44px;
+  stroke: #60A5FA;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.simulator__icon--family {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.simulator__icon--family svg {
+  width: 44px;
+  height: 44px;
+  stroke: #A78BFA;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.simulator__icon--success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  animation: pulseCheck 2s ease-in-out infinite;
+}
+
+.simulator__icon--success svg {
+  width: 52px;
+  height: 52px;
+  stroke: #10B981;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ── Typography ── */
+.simulator__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin-bottom: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.simulator__text {
+  font-size: 14px;
+  color: #94A3B8;
+  line-height: 1.7;
+  max-width: 300px;
+  margin-bottom: 32px;
+}
+
+.simulator__text strong {
+  color: #E2E8F0;
+}
+
+/* ── Buttons ── */
+.simulator__btn {
+  width: 100%;
+  max-width: 280px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+.simulator__btn--primary {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.simulator__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.simulator__btn--primary:active {
+  transform: translateY(0);
+}
+
+.simulator__btn--disabled {
+  background: #1E293B !important;
+  color: #475569 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.simulator__btn--close {
+  background: transparent;
+  color: #94A3B8;
+  border: 1px solid #334155;
+}
+
+.simulator__btn--close:hover {
+  background: #1E293B;
+  color: #E2E8F0;
+  border-color: #475569;
+}
+
+/* ── Checkbox ── */
+.simulator__checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  padding: 16px 18px;
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 14px;
+  margin-bottom: 28px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  max-width: 300px;
+  width: 100%;
+}
+
+.simulator__checkbox-wrap:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.simulator__checkbox-input {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  accent-color: #10B981;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.simulator__checkbox-label {
+  font-size: 13px;
+  color: #CBD5E1;
+  line-height: 1.6;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── Progress Dots ── */
+.simulator__progress {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0 20px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.simulator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1E293B;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.simulator__dot--active {
+  background: #10B981;
+  border-color: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.simulator__dot--completed {
+  background: #065F46;
+  border-color: #10B981;
+}
+
+/* ── Animations ── */
+@keyframes simFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes simFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes phoneSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulseCheck {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(16, 185, 129, 0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .simulator-phone {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .simulator-overlay {
+    padding: 0;
+  }
+}
