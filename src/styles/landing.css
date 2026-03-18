@@ -777,11 +777,11 @@
   background: var(--color-primary-900);
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: var(--space-6);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .auth-body::before {
@@ -814,6 +814,7 @@
   position: relative;
   z-index: 1;
   animation: fadeIn 0.6s ease forwards;
+  margin: auto;
 }
 
 .auth-brand {
