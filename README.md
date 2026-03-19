@@ -4,6 +4,9 @@ O **SeniorGuardian — Modo Guardião** é o painel de segurança patrimonial (D
 
 ## 🚀 Funcionalidades Principais
 
+- **Landing Page, Login e Cadastro**: Páginas modernas de apresentação e autenticação, totalmente responsivas e otimizadas para mobile e desktop.
+- **Jornada de Instalação (Setup Journey)**: Guia interativo na página inicial que explica o processo de instalação em 3 minutos, com foco em segurança.
+- **Simulador Interativo Mobile**: Módulo inserido no Dashboard que simula os passos reais de permissão e consentimento num dispositivo Android, guiando cuidadores.
 - **Dashboard Integrado**: Visão geral de alertas, status de proteção e atividades recentes.
 - **Gestão de Alertas**: Notificações em tempo real sobre transações suspeitas, tentativas de fraude (ex: Pix anormal) ou comportamentos atípicos.
 - **Relatórios de Segurança**: Resumos de atividades financeiras e bloqueios preventivos realizados pelo sistema.
@@ -30,18 +33,21 @@ Não se trata mais do app Flutter nativo. A nova estrutura do repositório front
 ```text
 senior-guardian/
 ├── public/                # Arquivos públicos e estáticos
-│   ├── index.html         # Página principal da aplicação (SPA)
+│   ├── index.html         # Landing Page de apresentação comercial
+│   ├── dashboard.html     # Painel gerencial e simulador de instalação
+│   ├── login.html         # Tela de Acesso (Login)
+│   ├── register.html      # Tela de Nova Conta
 │   └── favicon.svg        # Ícone do navegador
 ├── src/                   # Código fonte e recursos do frontend
-│   ├── app.js             # Lógica principal, Roteamento e Componentes (Módulos JS)
-│   └── styles/            # Módulos de estilização (CSS)
+│   ├── app.js             # Lógicas (simulador mobile, Setup journey, navbar e etc)
+│   └── styles/            # Módulos de estilização estruturados (CSS)
 │       ├── variables.css 
 │       ├── global.css   
 │       ├── layout.css     
 │       └── components.css 
-├── server.js              # Servidor Node/Express de inicialização (fallback SPA)
-├── package.json           # Metadados do projeto e scripts npm
-└── README.md              # Documentação principal
+├── server.js              # Servidor Node/Express de inicialização (static fallback)
+├── package.json           # Dependências e scripts npm
+└── README.md              # Documentação principal do projeto
 ```
 
 *Nota: As ramificações de mobile (Flutter / lib / ios / android) citadas anteriormente não fazem parte do repositório front-end do Modo Guardião.*
